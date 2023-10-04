@@ -6,21 +6,23 @@ import { BsFillShareFill } from 'react-icons/bs';
 import Haeder from '../../Pages/Shared/Header/Haeder';
 import Navbar from '../../Pages/Shared/Navbar/Navbar';
 import BreakingNews from '../../Pages/Home/BreakingNews';
-
+import { useLoaderData } from 'react-router-dom'
+import NewsCards from "./NewsCards";
 
 const Home = () => {
+    const news = useLoaderData();
+    console.log(news)
     return (
         <div>
             <Haeder></Haeder>
             <BreakingNews></BreakingNews>
             <Navbar></Navbar>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-5 border">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
                 <div><LeftSideNav></LeftSideNav></div>
 
-
-
-                <div className="col-span-2 border"><h2 className="text-4xl p-4 mt-1 ">Dragon News Home</h2>
+                   
+                <div className="col-span-2 "><h2 className="text-4xl p-4 mt-1 ">Dragon News Home</h2>
                     <div className="flex justify-between p-6">
                         <div className="flex">
                             <img className="w-12 rounded-full" src="/src/assets/user.png" alt="" />
@@ -35,23 +37,14 @@ const Home = () => {
 
                         </div>
                     </div>
-
-
-
-
-
+                    {
+                        news.map(aNews => <NewsCards key={aNews._id} news={aNews}></NewsCards>)
+                    }
                 </div>
 
 
 
-
-
-
-
-
-
-
-                <div className="border"><RightSideNav></RightSideNav></div>
+                <div className=""><RightSideNav></RightSideNav></div>
             </div>
         </div>
     );
